@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <span routerLink="/" class="logo" aria-label="Gerenciador de Tarefas">
+    📝 {{ title }}
+  </span>
+  
+  <nav class="nav-links">
+    <a 
+      mat-button 
+      routerLink="/" 
+      routerLinkActive="active" 
+      aria-current="page"
+      aria-label="Página inicial com lista de tarefas">
+      Minhas Tarefas
+    </a>
+    <a 
+      mat-button 
+      routerLink="/nova" 
+      routerLinkActive="active"
+      aria-label="Criar nova tarefa">
+      Nova Tarefa
+    </a>
+  </nav>
+</mat-toolbar>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

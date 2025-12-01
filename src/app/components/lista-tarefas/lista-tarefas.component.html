@@ -1,0 +1,68 @@
+<div class="lista-container">
+  <header class="lista-header">
+    <h1>Minhas Tarefas</h1>
+    
+    <!-- Botão para nova tarefa - Requisito: Navegação -->
+    <button 
+      mat-raised-button 
+      color="primary" 
+      (click)="novaTarefa()"
+      aria-label="Adicionar nova tarefa">
+      <mat-icon>add</mat-icon>
+      Nova Tarefa
+    </button>
+  </header>
+
+  <!-- Loading state - Requisito: Feedback visual -->
+  <div *ngIf="carregando" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Carregando tarefas...</p>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="erroCarregamento && !carregando" class="erro">
+    <p>Erro ao carregar tarefas. Tente novamente.</p>
+    <button mat-button (click)="carregarTarefas()">Recarregar</button>
+  </div>
+
+  <!-- Lista de tarefas - Requisito: GET API -->
+  <div *ngIf="!carregando && !erroCarregamento" class="lista-conteudo">
+    
+    <!-- Tarefas pendentes -->
+    <section *ngIf="tarefasPendentes.length > 0" class="tarefas-section">
+      <h2>Tarefas Pendentes ({{ tarefasPendentes.length }})</h2>
+      <app-item-tarefa
+        *ngFor="let tarefa of tarefasPendentes"
+        [tarefa]="tarefa"
+        (toggleConcluida)="onToggleConcluida($event)"
+        (editar)="onEditarTarefa($event)"
+        (excluir)="onExcluirTarefa($event)">
+      </app-item-tarefa>
+    </section>
+
+    <!-- Tarefas concluídas -->
+    <section *ngIf="tarefasConcluidas.length > 0" class="tarefas-section">
+      <h2>Tarefas Concluídas ({{ tarefasConcluidas.length }})</h2>
+      <app-item-tarefa
+        *ngFor="let tarefa of tarefasConcluidas"
+        [tarefa]="tarefa"
+        (toggleConcluida)="onToggleConcluida($event)"
+        (editar)="onEditarTarefa($event)"
+        (excluir)="onExcluirTarefa($event)">
+      </app-item-tarefa>
+    </section>
+
+    <!-- Estado vazio -->
+    <div *ngIf="tarefas.length === 0" class="estado-vazio">
+      <mat-icon>assignment</mat-icon>
+      <h3>Nenhuma tarefa encontrada</h3>
+      <p>Comece criando sua primeira tarefa!</p>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        (click)="novaTarefa()">
+        Criar Primeira Tarefa
+      </button>
+    </div>
+  </div>
+</div>

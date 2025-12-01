@@ -1,0 +1,65 @@
+.lista-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.lista-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lista-header h1 {
+  margin: 0;
+  color: #3f51b5;
+}
+
+.tarefas-section {
+  margin-bottom: 2rem;
+}
+
+.tarefas-section h2 {
+  margin-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.25rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.loading, .erro, .estado-vazio {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.estado-vazio mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Responsividade - Requisito: Mobile First */
+@media (max-width: 768px) {
+  .lista-container {
+    padding: 0.5rem;
+  }
+  
+  .lista-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .lista-header h1 {
+    text-align: center;
+  }
+  
+  .loading, .erro, .estado-vazio {
+    padding: 2rem 1rem;
+  }
+}
