@@ -118,6 +118,7 @@ Pré-requisitos
 
 # 📸 Capturas de Tela
 
+https://imgur.com/a/FRid1n5
 ![Uploading 20251201_162103.jpg…]()
 
 # 📱 Mobile View
