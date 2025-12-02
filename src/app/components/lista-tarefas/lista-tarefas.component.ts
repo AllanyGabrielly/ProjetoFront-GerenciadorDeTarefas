@@ -1,13 +1,16 @@
+// Componente principal da lista de tarefas com gerenciamento de estado e operações CRUD
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TarefaService } from '../../services/tarefa.service';
 import { Tarefa } from '../../models/tarefa.interface';
 
+// Configuração do componente com template e estilos
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css']
 })
+// Classe do componente que implementa ciclo de vida OnInit para carregar dados
 export class ListaTarefasComponent implements OnInit {
   tarefas: Tarefa[] = [];
   carregando = true;
@@ -17,11 +20,11 @@ export class ListaTarefasComponent implements OnInit {
     private tarefaService: TarefaService,
     private router: Router
   ) {}
-
+  // Método do ciclo de vida que carrega as tarefas ao inicializar o componente
   ngOnInit(): void {
     this.carregarTarefas();
   }
-
+  // Carrega a lista de tarefas tratando estados de carregamento e erro
   carregarTarefas(): void {
     this.carregando = true;
     this.erroCarregamento = false;
@@ -37,7 +40,7 @@ export class ListaTarefasComponent implements OnInit {
       }
     });
   }
-
+  // Alterna o estado de conclusão de uma tarefa e atualiza no servidor
   onToggleConcluida(tarefaId: number): void {
     const tarefa = this.tarefas.find(t => t.id === tarefaId);
     if (tarefa) {
@@ -60,11 +63,11 @@ export class ListaTarefasComponent implements OnInit {
       });
     }
   }
-
+  // Navega para a página de edição da tarefa selecionada
   onEditarTarefa(tarefa: Tarefa): void {
     this.router.navigate(['/editar', tarefa.id]);
   }
-
+  // Exclui uma tarefa após confirmação do usuário e remove da lista local
   onExcluirTarefa(tarefaId: number): void {
     if (confirm('Tem certeza que deseja excluir esta tarefa?')) {
       this.tarefaService.deletarTarefa(tarefaId).subscribe({
@@ -77,16 +80,17 @@ export class ListaTarefasComponent implements OnInit {
       });
     }
   }
-
+  // Navega para a página de criação de nova tarefa
   novaTarefa(): void {
     this.router.navigate(['/nova']);
   }
-
+  // Getter que retorna apenas as tarefas pendentes (não concluídas)
   get tarefasPendentes(): Tarefa[] {
     return this.tarefas.filter(t => !t.concluida);
   }
-
+  // Getter que retorna apenas as tarefas concluídas
   get tarefasConcluidas(): Tarefa[] {
     return this.tarefas.filter(t => t.concluida);
   }
+
 }
