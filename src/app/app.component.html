@@ -2,7 +2,8 @@
   <span routerLink="/" class="logo" aria-label="Gerenciador de Tarefas">
     📝 {{ title }}
   </span>
-  
+
+  <!-- Link para a página inicial (lista de tarefas) -->
   <nav class="nav-links">
     <a 
       mat-button 
@@ -12,6 +13,7 @@
       aria-label="Página inicial com lista de tarefas">
       Minhas Tarefas
     </a>
+    <!-- Link para a página de criação de nova tarefa -->
     <a 
       mat-button 
       routerLink="/nova" 
@@ -22,6 +24,7 @@
   </nav>
 </mat-toolbar>
 
+<!-- Área principal onde o conteúdo das rotas será renderizado -->
 <main class="main-content">
   <router-outlet></router-outlet>
 </main>
